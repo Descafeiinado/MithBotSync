@@ -1,0 +1,39 @@
+plugins {
+    id 'java'
+    id 'maven'
+        id "me.bristermitten.pdm" version "0.0.33" //Replace with the latest version
+    id 'com.github.johnrengelman.shadow' version '6.0.0'
+}
+
+jar.archiveName = project.name + '.jar'
+
+defaultTasks 'clean', 'build'
+
+group 'net.heavenus'
+version '1.0-SNAPSHOT'
+
+tasks.build.dependsOn('shadowJar')
+
+repositories {
+    mavenCentral()
+    maven { url "https://oss.sonatype.org/content/repositories/snapshots" }
+    maven { url = 'https://jitpack.io/' }
+    maven { url = 'https://m2.dv8tion.net/releases' }
+
+}
+
+dependencies {
+    compile group: 'net.md-5', name: 'bungeecord-api', version: '1.8-SNAPSHOT'
+    compileOnly group: 'org.projectlombok', name: 'lombok', version: '1.16.2'
+    compileOnly 'net.luckperms:api:5.3'
+    implementation 'net.dv8tion:JDA:4.3.0_307'
+    implementation 'com.zaxxer:HikariCP:3.4.5'
+    implementation 'org.mariadb.jdbc:mariadb-java-client:2.6.0'
+}
+
+compileJava {
+    options.encoding('UTF-8')
+
+    sourceCompatibility('1.8')
+    targetCompatibility('1.8')
+}

@@ -1,0 +1,71 @@
+database:
+  # Tipos de bancos de dados disponíveis atualmente: MySQL
+  tipo: 'MySQL'
+  mysql:
+    # Utilizar Hikari (recomendado: true)
+    hikari: false
+    # Utilizar driver da MariaDB (recomendado: true)
+    mariadb: false
+    # Host para acessar o MySQL
+    host: 'localhost'
+    # Porta para acessar o MySQL
+    porta: '3306'
+    # Nome do banco de dados no MySQL
+    nome: 'server'
+    # Usuário de acesso ao MySQL
+    usuario: 'root'
+    # Senha de acesso ao MySQL
+    senha: ''
+
+# Aqui você insere as configurações do bot de discord
+discord:
+  token: '{seu token do discord}'
+  # O id da guilda vai ser necessário para que as funções do bot sejam realizadas normalmente
+  guildid: '{id da guilda}'
+  # Aqui você pode personalizar o prefixo dos comandos do bot.
+  prefix: '!'
+
+server:
+  member: 'master'
+  booster: 'master'
+# Aqui você pode definir múltiplos status customizáveis utilizando o seguinte formato
+#
+# Formato: 'ONLINESTATUS; STATUSTYPE; MESSAGE'
+# OnlineStatus disponíveis: ONLINE, DO_NOT_DISTURB, IDLE, INVISIBLE, OFFLINE
+# StatusType disponíveis: DEFAULT, COMPETING, CUSTOM_STATUS, LISTENING, WATCHING
+#
+# Exemplo: 'ONLINE; WATCHING; O suporte chegou!'
+presences:
+  - 'ONLINE; LISTENING; a equipe.'
+
+# Aqui você configura os cargos que serão recebidos pelo jogador no momento da definição do cargo.
+roles:
+  master:
+    name: 'Master'
+    role: '875535343519137832'
+  gerente:
+    name: 'Gerente'
+    role: '875535377031659581'
+  admin:
+    name: 'Admin'
+    role: '875535412720963614'
+  moderador:
+    name: 'Moderador'
+    role: '875535436456546364'
+  ajudante:
+    name: 'Ajudante'
+    role: '875535491259318352'
+  youtuber:
+    name: 'YouTuber'
+    role: '875535560373067776'
+  booster:
+    name: 'Booster'
+    role: '875535641339904022'
+    booster: true
+  vip:
+    name: 'VIP'
+    role: '875535667940196393'
+  member:
+    name: 'Membro'
+    role: '875535710822744074'
+    member: true
