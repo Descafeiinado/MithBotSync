@@ -3,6 +3,7 @@ package net.heavenus.mith.commands.proxy;
 import net.heavenus.mith.BotSync;
 import net.heavenus.mith.commands.Commands;
 import net.heavenus.mith.core.DiscordBot;
+import net.heavenus.mith.executor.RoleSynchronizationExecutor;
 import net.md_5.bungee.api.ChatColor;
 import net.md_5.bungee.api.CommandSender;
 import net.md_5.bungee.api.ProxyServer;
@@ -75,7 +76,7 @@ public class DiscordCommand extends Commands {
                 player.sendMessage(TextComponent.fromLegacyText("§cVocê não possui uma conta vinculada, vincule utilizando /discord vincular"));
                 return;
             }
-
+            RoleSynchronizationExecutor.sync(RoleSynchronizationExecutor.getAccount(player.getName()), true, false);
             BotSync.getHikariDatabase().execute("DELETE FROM `MithBotSync` WHERE `name` = ?", player.getName());
             player.sendMessage(TextComponent.fromLegacyText("§aConta desvinculada com sucesso."));
 

@@ -2,6 +2,7 @@ package net.heavenus.mith.handlers;
 
 import net.heavenus.mith.BotSync;
 import net.heavenus.mith.core.role.Role;
+import net.heavenus.mith.executor.RoleSynchronizationExecutor;
 import net.luckperms.api.LuckPerms;
 import net.luckperms.api.LuckPermsProvider;
 import net.luckperms.api.event.EventBus;
@@ -15,7 +16,7 @@ public class LuckPermsEventHandler {
         EventBus eventBus = luckPerms.getEventBus();
 
         eventBus.subscribe(BotSync.getInstance(), NodeMutateEvent.class, consumer -> {
-
+            RoleSynchronizationExecutor.sync(RoleSynchronizationExecutor.getAccount(consumer.getTarget().getFriendlyName()), false, false);
         });
     }
 }

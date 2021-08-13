@@ -1,6 +1,8 @@
 package net.heavenus.mith.core.role;
 
 import net.heavenus.mith.BotSync;
+import net.luckperms.api.LuckPermsProvider;
+import net.luckperms.api.model.group.Group;
 import net.md_5.bungee.config.Configuration;
 
 import java.util.ArrayList;
@@ -40,6 +42,20 @@ public class Role {
     }
 
     private static final List<Role> ROLES = new ArrayList<>();
+
+    public Group getLuckPermsNode() {
+        return LuckPermsProvider.get().getGroupManager().getLoadedGroups().stream().filter(predicate -> {
+            return predicate.getName().equals(this.name);
+        }).findFirst().orElse(null);
+    }
+
+    public static Role getRoleByBooster() {
+        return ROLES.stream().filter(Role::isBooster).findAny().orElse(null);
+    }
+
+    public static Role getRoleByDefault() {
+        return ROLES.stream().filter(Role::isMember).findAny().orElse(null);
+    }
 
     public static Role getRoleByName(String name) {
         return ROLES.stream().filter(predicate -> {

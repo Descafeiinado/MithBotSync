@@ -8,6 +8,7 @@ import net.heavenus.mith.commands.interfaces.CommandInterface;
 import net.heavenus.mith.commands.proxy.DiscordCommand;
 import net.heavenus.mith.core.embed.Embeds;
 import net.heavenus.mith.core.role.Role;
+import net.heavenus.mith.executor.RoleSynchronizationExecutor;
 import net.md_5.bungee.api.ProxyServer;
 import net.md_5.bungee.api.chat.TextComponent;
 import net.md_5.bungee.api.connection.ProxiedPlayer;
@@ -34,6 +35,7 @@ public class VinculateCommand implements CommandInterface {
         if (DiscordCommand.hashMap.containsKey(args.get(1))) {
             BotSync.getHikariDatabase().execute("INSERT INTO `MithBotSync` VALUES (?, ?)", DiscordCommand.hashMap.get(args.get(1)), e.getAuthor().getId());
             e.getChannel().sendMessage(Embeds.REGISTERED_SUCCESS(DiscordCommand.hashMap.get(args.get(1)))).queue();
+            RoleSynchronizationExecutor.sync(RoleSynchronizationExecutor.getAccountFromDiscord(e.getAuthor().getId()), false, true);
 
             ProxiedPlayer proxiedPlayer = ProxyServer.getInstance().getPlayer(DiscordCommand.hashMap.remove(args.get(1)));
             if (proxiedPlayer != null && proxiedPlayer.isConnected()) {

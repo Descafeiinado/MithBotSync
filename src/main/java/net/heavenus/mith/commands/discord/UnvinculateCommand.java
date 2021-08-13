@@ -5,6 +5,7 @@ import net.heavenus.mith.BotSync;
 import net.heavenus.mith.commands.interfaces.CommandInterface;
 import net.heavenus.mith.commands.proxy.DiscordCommand;
 import net.heavenus.mith.core.embed.Embeds;
+import net.heavenus.mith.executor.RoleSynchronizationExecutor;
 import net.md_5.bungee.api.ProxyServer;
 import net.md_5.bungee.api.chat.TextComponent;
 import net.md_5.bungee.api.connection.ProxiedPlayer;
@@ -25,7 +26,7 @@ public class UnvinculateCommand implements CommandInterface {
             e.getChannel().sendMessage(Embeds.REGISTRY_ARGUMENTS_NOT_SUFFICIENT).queue();
             return;
         }
-
+        RoleSynchronizationExecutor.sync(RoleSynchronizationExecutor.getAccountFromDiscord(e.getAuthor().getId()), true, false);
         BotSync.getHikariDatabase().execute("DELETE FROM `MithBotSync` WHERE `discord_id` = ?", e.getAuthor());
         e.getChannel().sendMessage(Embeds.DESVINCULATE_SUCCESS()).queue();
 
