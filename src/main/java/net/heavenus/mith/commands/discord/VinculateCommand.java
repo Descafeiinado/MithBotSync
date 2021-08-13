@@ -39,8 +39,8 @@ public class VinculateCommand implements CommandInterface {
             if (proxiedPlayer != null && proxiedPlayer.isConnected()) {
                 proxiedPlayer.sendMessage(TextComponent.fromLegacyText("\n" +
                         " §aSucesso!\n" +
-                        " §aVocê teve sua conta do servidor vinculada com a conta do Discord §f" + e.getAuthor().getName() + "#" + e.getAuthor().getDiscriminator() + "§a." +
-                        " §7* Você obteve acesso à todos os canais do nosso Discord."));
+                        " §aVocê teve sua conta do servidor vinculada com a conta do Discord §f" + e.getAuthor().getName() + "#" + e.getAuthor().getDiscriminator() + "§a.\n" +
+                        " §7* Você obteve acesso à todos os canais do nosso Discord.\n"));
             }
         }
 
