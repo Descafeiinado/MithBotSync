@@ -26,8 +26,9 @@ public class VinculateCommand implements CommandInterface {
             return;
         }
 
-        if (args.size() != 1) {
+        if (args.size() != 2) {
             e.getChannel().sendMessage(Embeds.REGISTRY_ARGUMENTS_NOT_SUFFICIENT).queue();
+            return;
         }
 
         if (DiscordCommand.hashMap.containsKey(args.get(1))) {
@@ -41,19 +42,13 @@ public class VinculateCommand implements CommandInterface {
                         " §aVocê teve sua conta do servidor vinculada com a conta do Discord §f" + e.getAuthor().getName() + "#" + e.getAuthor().getDiscriminator() + "§a." +
                         " §7* Você obteve acesso à todos os canais do nosso Discord."));
             }
-            try {
-                e.getJDA().getGuildById(BotSync.getInstance().getConfiguration().getString("discord.guild")).
-                        addRoleToMember(e.getAuthor().getIdLong(), e.getJDA().getGuildById(BotSync.getInstance().getConfiguration().getString("discord.guild")).getRoleById(Role.getRoleByName("member").getRoleLong())).complete();
-            } catch (Exception nullPointerException){
-                nullPointerException.printStackTrace();
-            }
         }
 
     }
 
     @Override
     public String[] getInvoke() {
-        return new String[]{"ping", "pong"};
+        return new String[]{"vincular", "vinculate"};
     }
 
 }

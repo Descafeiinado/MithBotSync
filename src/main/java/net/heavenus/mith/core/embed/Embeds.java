@@ -16,9 +16,15 @@ public class Embeds {
     public static MessageEmbed REGISTRY_ARGUMENTS_NOT_SUFFICIENT = new EmbedBuilder().setColor(Color.RED).setTitle(":x: | **Erro:**").setTimestamp(new Date().toInstant()).
             setDescription("Argumentos insuficientes.\nUtilize " + BotSync.getInstance().getConfiguration().getString("discord.prefix") + "vincular <codigo>").build();
 
-    public static MessageEmbed UNIQUE_USERNAME_ALREADY_REGISTERED = new EmbedBuilder().setColor(Color.RED).setTitle(":x: | **Erro:**").setTimestamp(new Date().toInstant()).
-            setDescription("Já existe um usuário utilizando este nome de usuário.").build();
+    public static MessageEmbed DESVINCULATE_NOT_VINCULATED() {
+        return new EmbedBuilder().setColor(Color.RED).setTitle(":x: | **Erro:**").setTimestamp(new Date().toInstant()).
+                setDescription("Você não possui nenhuma conta vinculada.").build();
+    }
 
+    public static MessageEmbed DESVINCULATE_SUCCESS() {
+        return new EmbedBuilder().setColor(Color.GREEN).setTitle(":white_small_square: | **Sucesso:**").setTimestamp(new Date().toInstant()).
+                setDescription("Sua conta foi desvinculada com sucesso.").build();
+    }
 
     public static MessageEmbed REGISTERED_SUCCESS(String nickname) {
         return new EmbedBuilder().setColor(Color.GREEN).setTitle(":white_small_square: | **Sucesso:**").setTimestamp(new Date().toInstant()).

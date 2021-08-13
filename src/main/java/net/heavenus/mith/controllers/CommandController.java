@@ -12,6 +12,7 @@ import java.util.regex.Pattern;
 import net.dv8tion.jda.api.EmbedBuilder;
 import net.dv8tion.jda.api.events.message.priv.PrivateMessageReceivedEvent;
 import net.heavenus.mith.BotSync;
+import net.heavenus.mith.commands.discord.UnvinculateCommand;
 import net.heavenus.mith.commands.discord.VinculateCommand;
 import net.heavenus.mith.commands.interfaces.CommandInterface;
 import org.jetbrains.annotations.NotNull;
@@ -25,6 +26,7 @@ public class CommandController {
     public CommandController() {
 
         addCommand(new VinculateCommand());
+        addCommand(new UnvinculateCommand());
     }
 
     private void addCommand(CommandInterface command) {
