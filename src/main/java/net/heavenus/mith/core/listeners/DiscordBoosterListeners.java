@@ -34,7 +34,14 @@ public class DiscordBoosterListeners extends ListenerAdapter {
             if (Role.getRoleByBooster() == null) return;
 
             LuckPerms luckPerms = LuckPermsProvider.get();
-            net.luckperms.api.model.user.User luckPermsUser = luckPerms.getUserManager().loadUser(UUID.randomUUID(), abstractMithAccount.getUsername()).join();
+            net.luckperms.api.model.user.User luckPermsUser;
+
+            try {
+                luckPermsUser = luckPerms.getUserManager().loadUser(abstractMithAccount.getUniqueId(), abstractMithAccount.getUsername()).get();
+            } catch (Exception exception) {
+                BotSync.debugLogs.add("Couldn't load user.");
+                return;
+            }
 
             luckPerms.getGroupManager().getLoadedGroups().forEach(group -> {
                 net.heavenus.mith.core.role.Role localRole = net.heavenus.mith.core.role.Role.getRoleByName(group.getName());
@@ -59,8 +66,14 @@ public class DiscordBoosterListeners extends ListenerAdapter {
             if (Role.getRoleByBooster() == null) return;
 
             LuckPerms luckPerms = LuckPermsProvider.get();
-            net.luckperms.api.model.user.User luckPermsUser = luckPerms.getUserManager().loadUser(UUID.randomUUID(), abstractMithAccount.getUsername()).join();
+            net.luckperms.api.model.user.User luckPermsUser;
 
+            try {
+                luckPermsUser = luckPerms.getUserManager().loadUser(abstractMithAccount.getUniqueId(), abstractMithAccount.getUsername()).get();
+            } catch (Exception exception) {
+                BotSync.debugLogs.add("Couldn't load user.");
+                return;
+            }
             luckPermsUser.getInheritedGroups(luckPermsUser.getQueryOptions()).forEach(group -> {
 
                 net.heavenus.mith.core.role.Role localRole = net.heavenus.mith.core.role.Role.getRoleByName(group.getName());
