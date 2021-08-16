@@ -17,6 +17,8 @@ public class Embeds {
             setDescription("Seu código de autenticação é inválido.").build();
     public static MessageEmbed ACCOUNT_ALREADY_REGISTERED = new EmbedBuilder().setColor(Color.RED).setTitle(":x: | **Erro:**").setTimestamp(new Date().toInstant()).
             setDescription("Seu discord já está vinculado à uma conta.").build();
+    public static MessageEmbed PLAYER_NOT_ONLINE = new EmbedBuilder().setColor(Color.RED).setTitle(":x: | **Erro:**").setTimestamp(new Date().toInstant()).
+            setDescription("Você precisa estar online em nosso servidor para poder vincular a sua conta.").build();
     public static MessageEmbed REGISTRY_ARGUMENTS_NOT_SUFFICIENT = new EmbedBuilder().setColor(Color.RED).setTitle(":x: | **Erro:**").setTimestamp(new Date().toInstant()).
             setDescription("Argumentos insuficientes.\nUtilize " + BotSync.getInstance().getConfiguration().getString("discord.prefix") + "vincular <codigo>").build();
 

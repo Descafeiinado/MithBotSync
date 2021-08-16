@@ -4,6 +4,7 @@ import javax.sql.rowset.CachedRowSet;
 import javax.sql.rowset.RowSetProvider;
 import java.sql.*;
 import java.util.*;
+import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.logging.Level;
@@ -100,9 +101,14 @@ public class HikariDatabase {
         }
     }
 
-    public void execute(String sql, Object... vars) {
-        executor.execute(() -> {
-            update(sql, vars);
+    public CompletableFuture<Void> execute(String sql, Object... vars) {
+        return CompletableFuture.runAsync(new Runnable() {
+            @Override
+            public void run() {
+                executor.execute(() -> {
+                    update(sql, vars);
+                });
+            }
         });
     }
 

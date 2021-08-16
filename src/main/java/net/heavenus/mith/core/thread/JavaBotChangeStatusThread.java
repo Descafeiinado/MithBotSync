@@ -8,6 +8,7 @@ import net.dv8tion.jda.api.managers.Presence;
 import net.heavenus.mith.BotSync;
 import net.heavenus.mith.core.implementation.PersonalizedPresence;
 
+import javax.sql.rowset.CachedRowSet;
 import java.util.ArrayList;
 import java.util.concurrent.ThreadLocalRandom;
 

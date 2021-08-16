@@ -4,8 +4,10 @@ import lombok.Getter;
 import lombok.SneakyThrows;
 import net.dv8tion.jda.api.JDA;
 import net.dv8tion.jda.api.JDABuilder;
+import net.dv8tion.jda.api.requests.GatewayIntent;
 import net.heavenus.mith.BotSync;
 import net.heavenus.mith.core.listeners.CommandListeners;
+import net.heavenus.mith.core.listeners.DiscordBoosterListeners;
 import net.heavenus.mith.core.thread.JavaBotChangeStatusThread;
 import net.md_5.bungee.api.plugin.Plugin;
 
@@ -21,8 +23,8 @@ public class DiscordBot {
     public static void startBot() {
         try {
             jda = JDABuilder.
-                    createLight(BotSync.getInstance().getConfiguration().getString("discord.token", "null")).
-                    addEventListeners(new CommandListeners()).
+                    create(BotSync.getInstance().getConfiguration().getString("discord.token", "null"), GatewayIntent.GUILD_MEMBERS, GatewayIntent.DIRECT_MESSAGES).
+                    addEventListeners(new CommandListeners(), new DiscordBoosterListeners()).
                     build();
             jda.awaitReady();
         } catch (Exception e) {

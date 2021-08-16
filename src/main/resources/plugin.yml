@@ -1,6 +1,7 @@
   name: MithBotSync
   main: net.heavenus.mith.BotSync
   version: 1.0
+  author: HeavenUS
   commands:
     discord:
       description: "Comando principal do plugin."

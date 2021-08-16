@@ -59,7 +59,7 @@ public class Role {
 
     public static Role getRoleByName(String name) {
         return ROLES.stream().filter(predicate -> {
-            return predicate.getName().equals(name);
+            return predicate.getName().equals(name.toLowerCase());
         }).findAny().orElse(null);
     }
 
@@ -78,7 +78,7 @@ public class Role {
             String roleLong = config.getString("roles." + key + ".role");
             boolean booster = config.getBoolean("roles." + key + ".booster", false);
             boolean member = config.getBoolean("roles." + key + ".member", false);
-            Role.listRoles().add(new Role(name, roleLong, booster, member));
+            Role.listRoles().add(new Role(name.toLowerCase(), roleLong, booster, member));
         }
 
         if (Role.listRoles().isEmpty()) {

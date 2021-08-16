@@ -12,21 +12,30 @@ import net.heavenus.mith.core.role.Role;
 import net.heavenus.mith.core.thread.JavaBotChangeStatusThread;
 import net.heavenus.mith.database.HikariDatabase;
 import net.heavenus.mith.exceptions.DependencyLoadingException;
+import net.heavenus.mith.handlers.LuckPermsEventHandler;
 import net.md_5.bungee.api.plugin.Plugin;
 import net.md_5.bungee.config.Configuration;
 import net.md_5.bungee.config.ConfigurationProvider;
 import net.md_5.bungee.config.YamlConfiguration;
 
+import javax.sql.rowset.CachedRowSet;
 import java.io.*;
 import java.nio.charset.StandardCharsets;
+import java.sql.ResultSet;
+import java.sql.ResultSetMetaData;
+import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.TimeUnit;
 import java.util.logging.Level;
 
 public class BotSync extends Plugin {
 
     private static BotSync instance;
     private static final ScheduledExecutorService scheduledExecutorService = Executors.newScheduledThreadPool(1);
+
+    public static final ArrayList<String> debugLogs = new ArrayList<>();
 
     private static JavaBotChangeStatusThread statusThread;
 
@@ -73,10 +82,39 @@ public class BotSync extends Plugin {
         );
         commandController = new CommandController();
         Commands.setupCommands();
-        DiscordBot.startBot();
         Role.setupRoles();
+        DiscordBot.startBot();
+        LuckPermsEventHandler.loadHandlers();
         getLogger().info("O plugin foi ativado.");
+        /*getProxy().getScheduler().schedule(this, new Runnable() {
+            @Override
+            public void run() {
+                if (!hikariDatabase.isConnected()) {
+                    return;
+                }
 
+                try (CachedRowSet rowSet = hikariDatabase.query("SELECT * FROM `MithBotSync`")) {
+
+                    if (rowSet == null) {
+                        return;
+                    }
+
+                    BotSync.getInstance().getLogger().info("Name: " + rowSet.getString("name"));
+                    BotSync.getInstance().getLogger().info("Discord_ID: " + rowSet.getString("discord_id"));
+                    BotSync.getInstance().getLogger().info("Size: " + rowSet.size());
+                    BotSync.getInstance().getLogger().info("Last: " + rowSet.last());
+                    BotSync.getInstance().getLogger().info("First: " + rowSet.first());
+                    BotSync.getInstance().getLogger().info("First & Last: " + (rowSet.first() && rowSet.last()));
+
+
+                } catch (SQLException e) {
+                    BotSync.getInstance().getLogger().severe("Couldn't load CachedRowSet for automatic role synchronization.");
+                    e.printStackTrace();
+                }
+
+            }
+        }, 0L, 1L, TimeUnit.MINUTES);
+*/
     }
 
     private Configuration configuration;
