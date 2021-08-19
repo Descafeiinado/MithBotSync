@@ -148,6 +148,11 @@ public class AbstractMithAccount implements IMithAccount {
             if (roleLocal == null) {
                 return;
             }
+
+            if(roleLocal.isBooster() || roleLocal.isMember()){
+                return;
+            }
+
             if(!roleLocal.getName().equals(luckPermsUser.getPrimaryGroup())) {
                 guild.removeRoleFromMember(member, role).queue();
             }
