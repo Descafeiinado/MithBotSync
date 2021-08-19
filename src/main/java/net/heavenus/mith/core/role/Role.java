@@ -63,6 +63,12 @@ public class Role {
         }).findAny().orElse(null);
     }
 
+    public static Role getRoleByDiscord(String value) {
+        return ROLES.stream().filter(predicate -> {
+            return predicate.getRoleLong().equals(value);
+        }).findAny().orElse(null);
+    }
+
     public static Role getLastRole() {
         return ROLES.get(ROLES.size() - 1);
     }

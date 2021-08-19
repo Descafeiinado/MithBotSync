@@ -143,8 +143,14 @@ public class AbstractMithAccount implements IMithAccount {
             if (net.heavenus.mith.core.role.Role.getRoleByBooster().getRoleLong().equals(role.getId())) {
                 return;
             }
+            net.heavenus.mith.core.role.Role roleLocal = net.heavenus.mith.core.role.Role.getRoleByDiscord(role.getId());
 
-            guild.removeRoleFromMember(member, role).queue();
+            if (roleLocal == null) {
+                return;
+            }
+            if(!roleLocal.getName().equals(luckPermsUser.getPrimaryGroup())) {
+                guild.removeRoleFromMember(member, role).queue();
+            }
         });
 
         Group group = luckPerms.getGroupManager().getGroup(luckPermsUser.getPrimaryGroup());
