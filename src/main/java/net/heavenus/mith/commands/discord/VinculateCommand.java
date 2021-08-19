@@ -48,15 +48,8 @@ public class VinculateCommand implements CommandInterface {
                         IMithAccount iMithAccount = AbstractMithAccount.getFrom(DatabaseFindType.DISCORD_ID, e.getAuthor().getId());
                         if(iMithAccount instanceof EmptyMithAccountBucket) return;
                         AbstractMithAccount abstractMithAccount = (AbstractMithAccount) iMithAccount;
-                        abstractMithAccount.sync();
-                        Guild guild = e.getJDA().getGuildById(BotSync.getInstance().getConfiguration().getString("discord.guildid"));
+                        abstractMithAccount.register();
 
-                        if (guild != null) {
-                            Member member = guild.getMemberById(e.getAuthor().getId());
-                            if (member != null) {
-                                member.modifyNickname(DiscordCommand.hashMap.get(args.get(1)) + " ✯").complete();
-                            }
-                        }
 
                         proxiedPlayer.sendMessage(TextComponent.fromLegacyText("\n" +
                                 " §aSucesso!\n" +

@@ -21,12 +21,11 @@ public class LoggerExecutor {
         try {
             File myObj = new File(this.name);
             myObj.createNewFile();
+            SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
             FileWriter fileWriter = new FileWriter(myObj);
-            StringBuilder stringBuilder = new StringBuilder();
             for (String string : BotSync.debugLogs){
-                stringBuilder.append(string).append("\n");
+                fileWriter.write("[" + format.format(new Timestamp(System.currentTimeMillis())) + " DEBUG THREAD] " + string + System.lineSeparator());
             }
-            fileWriter.write(stringBuilder.toString());
             fileWriter.close();
         } catch (IOException e) {
             System.out.println("An error occurred.");
@@ -37,8 +36,9 @@ public class LoggerExecutor {
     public void writeToFile(){
         try {
             FileWriter myWriter = new FileWriter(this.name);
-            for(String line : BotSync.debugLogs){
-                myWriter.write(line);
+            SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
+            for (String string : BotSync.debugLogs){
+                myWriter.write("[" + format.format(new Timestamp(System.currentTimeMillis())) + " DEBUG THREAD] " + string + System.lineSeparator());
             }
             myWriter.close();
         } catch (IOException e) {

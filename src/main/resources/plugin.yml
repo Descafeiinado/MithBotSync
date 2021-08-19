@@ -1,6 +1,6 @@
   name: MithBotSync
   main: net.heavenus.mith.BotSync
-  version: 1.0
+  version: 1.2.1
   author: HeavenUS
   commands:
     discord:
