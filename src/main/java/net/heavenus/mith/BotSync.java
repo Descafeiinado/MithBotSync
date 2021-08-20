@@ -6,7 +6,6 @@ import net.heavenus.mith.core.DiscordBot;
 import net.heavenus.mith.core.role.Role;
 import net.heavenus.mith.core.thread.JavaBotChangeStatusThread;
 import net.heavenus.mith.database.HikariDatabase;
-import net.heavenus.mith.exceptions.DependencyLoadingException;
 import net.heavenus.mith.models.AbstractMithAccount;
 import net.heavenus.mith.models.EmptyMithAccountBucket;
 import net.heavenus.mith.models.IMithAccount;

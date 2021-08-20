@@ -192,6 +192,11 @@ public class AbstractMithAccount implements IMithAccount {
         }
         Role role = guild.getRoleById(localRole.getRoleLong());
         if (role == null) return;
+
+        if(localRole.isBooster()){
+            return;
+        }
+
         guild.addRoleToMember(member, role).queue();
 
 
@@ -200,7 +205,9 @@ public class AbstractMithAccount implements IMithAccount {
         if (inheritedLocalRole == null) {
             return;
         }
-
+        if(inheritedLocalRole.isBooster()){
+            return;
+        }
         Role inheritedRole = guild.getRoleById(inheritedLocalRole.getRoleLong());
         if (inheritedRole == null) return;
         BotSync.debugLogs.add("Member: " + member.getUser().getId());
