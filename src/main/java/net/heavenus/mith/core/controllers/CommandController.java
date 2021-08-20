@@ -1,4 +1,4 @@
-package net.heavenus.mith.controllers;
+package net.heavenus.mith.core.controllers;
 
 import java.awt.*;
 import java.util.Arrays;
@@ -12,12 +12,10 @@ import java.util.regex.Pattern;
 import net.dv8tion.jda.api.EmbedBuilder;
 import net.dv8tion.jda.api.events.message.priv.PrivateMessageReceivedEvent;
 import net.heavenus.mith.BotSync;
-import net.heavenus.mith.commands.discord.UnvinculateCommand;
-import net.heavenus.mith.commands.discord.VinculateCommand;
-import net.heavenus.mith.commands.interfaces.CommandInterface;
+import net.heavenus.mith.core.commands.discord.UnvinculateCommand;
+import net.heavenus.mith.core.commands.discord.VinculateCommand;
+import net.heavenus.mith.core.commands.interfaces.CommandInterface;
 import org.jetbrains.annotations.NotNull;
-
-import net.dv8tion.jda.api.events.message.guild.GuildMessageReceivedEvent;
 
 public class CommandController {
 

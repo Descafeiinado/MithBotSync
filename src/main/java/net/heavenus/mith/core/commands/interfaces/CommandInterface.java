@@ -1,4 +1,4 @@
-package net.heavenus.mith.commands.interfaces;
+package net.heavenus.mith.core.commands.interfaces;
 
 
 import net.dv8tion.jda.api.events.message.priv.PrivateMessageReceivedEvent;

@@ -1,28 +1,25 @@
-package net.heavenus.mith.commands.proxy;
+package net.heavenus.mith.core.commands.proxy;
 
 import net.dv8tion.jda.api.entities.Member;
 import net.heavenus.mith.BotSync;
-import net.heavenus.mith.commands.Commands;
+import net.heavenus.mith.core.commands.Commands;
 import net.heavenus.mith.core.DiscordBot;
-import net.heavenus.mith.logger.LoggerExecutor;
+import net.heavenus.mith.core.logger.LoggerExecutor;
 import net.heavenus.mith.models.AbstractMithAccount;
 import net.heavenus.mith.models.EmptyMithAccountBucket;
 import net.heavenus.mith.models.IMithAccount;
 import net.heavenus.mith.models.enums.DatabaseFindType;
 import net.md_5.bungee.api.ChatColor;
 import net.md_5.bungee.api.CommandSender;
-import net.md_5.bungee.api.ProxyServer;
 import net.md_5.bungee.api.chat.BaseComponent;
 import net.md_5.bungee.api.chat.ClickEvent;
 import net.md_5.bungee.api.chat.HoverEvent;
 import net.md_5.bungee.api.chat.TextComponent;
 import net.md_5.bungee.api.connection.ProxiedPlayer;
 
-import javax.sql.rowset.CachedRowSet;
 import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
 import java.util.*;
-import java.util.stream.Collectors;
 
 public class DiscordCommand extends Commands {
 

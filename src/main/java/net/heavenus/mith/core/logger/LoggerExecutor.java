@@ -1,4 +1,4 @@
-package net.heavenus.mith.logger;
+package net.heavenus.mith.core.logger;
 
 import net.heavenus.mith.BotSync;
 

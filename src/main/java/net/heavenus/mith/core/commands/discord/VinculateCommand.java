@@ -1,15 +1,10 @@
-package net.heavenus.mith.commands.discord;
+package net.heavenus.mith.core.commands.discord;
 
-import net.dv8tion.jda.api.EmbedBuilder;
-import net.dv8tion.jda.api.entities.Guild;
-import net.dv8tion.jda.api.entities.Member;
-import net.dv8tion.jda.api.events.message.guild.GuildMessageReceivedEvent;
 import net.dv8tion.jda.api.events.message.priv.PrivateMessageReceivedEvent;
 import net.heavenus.mith.BotSync;
-import net.heavenus.mith.commands.interfaces.CommandInterface;
-import net.heavenus.mith.commands.proxy.DiscordCommand;
+import net.heavenus.mith.core.commands.interfaces.CommandInterface;
+import net.heavenus.mith.core.commands.proxy.DiscordCommand;
 import net.heavenus.mith.core.embed.Embeds;
-import net.heavenus.mith.core.role.Role;
 import net.heavenus.mith.models.AbstractMithAccount;
 import net.heavenus.mith.models.EmptyMithAccountBucket;
 import net.heavenus.mith.models.IMithAccount;
@@ -18,9 +13,6 @@ import net.md_5.bungee.api.ProxyServer;
 import net.md_5.bungee.api.chat.TextComponent;
 import net.md_5.bungee.api.connection.ProxiedPlayer;
 
-import javax.sql.rowset.CachedRowSet;
-import java.awt.*;
-import java.time.OffsetDateTime;
 import java.util.List;
 
 public class VinculateCommand implements CommandInterface {
