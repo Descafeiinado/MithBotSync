@@ -97,6 +97,31 @@ public class AbstractMithAccount implements IMithAccount {
         Member member = this.getMember();
         if (member == null) return;
         if (member.getRoles().isEmpty()) return;
+
+        LuckPerms luckPerms = LuckPermsProvider.get();
+        net.luckperms.api.model.user.User luckPermsUser;
+
+        try {
+            luckPermsUser = luckPerms.getUserManager().loadUser(this.getUniqueId(), this.getUsername()).get();
+        } catch (Exception exception) {
+            BotSync.debugLogs.add("Couldn't load user.");
+            return;
+        }
+
+        if (guild.getBoosters().contains(member)) {
+            luckPerms.getGroupManager().getLoadedGroups().forEach(group -> {
+                net.heavenus.mith.core.role.Role localRole = net.heavenus.mith.core.role.Role.getRoleByName(group.getName());
+
+                if (localRole == null) {
+                    return;
+                }
+                if (localRole.isBooster()) {
+                    luckPermsUser.data().remove(InheritanceNode.builder(group).build());
+                    luckPerms.getUserManager().saveUser(luckPermsUser);
+                }
+            });
+        }
+
         member.getRoles().forEach(role -> {
             if (net.heavenus.mith.core.role.Role.getRoleByBooster().getRoleLong().equals(role.getId())) return;
             guild.removeRoleFromMember(member, role).queue();
