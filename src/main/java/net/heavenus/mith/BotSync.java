@@ -98,7 +98,7 @@ public class BotSync extends Plugin {
                     }
                 } catch (SQLException ignored) { }
             }
-        }, 0L, 1L, TimeUnit.MINUTES);
+        }, 0L, 10L, TimeUnit.MINUTES);
     }
 
     private Configuration configuration;
