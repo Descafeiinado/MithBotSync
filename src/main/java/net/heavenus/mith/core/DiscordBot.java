@@ -10,6 +10,7 @@ import net.heavenus.mith.core.listeners.CommandListeners;
 import net.heavenus.mith.core.listeners.DiscordBoosterListeners;
 import net.heavenus.mith.core.thread.JavaBotChangeStatusThread;
 import net.md_5.bungee.api.plugin.Plugin;
+import net.heavenus.mith.core.listeners.QuitListeners;
 
 import java.util.concurrent.TimeUnit;
 
@@ -24,7 +25,7 @@ public class DiscordBot {
         try {
             jda = JDABuilder.
                     create(BotSync.getInstance().getConfiguration().getString("discord.token", "null"), GatewayIntent.GUILD_MEMBERS, GatewayIntent.DIRECT_MESSAGES).
-                    addEventListeners(new CommandListeners(), new DiscordBoosterListeners()).
+                    addEventListeners(new CommandListeners(), new DiscordBoosterListeners(), new QuitListeners()).
                     build();
             jda.awaitReady();
         } catch (Exception e) {
